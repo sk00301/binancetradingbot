@@ -1,0 +1,457 @@
+2025-01-15 09:12:01 | INFO     | trading_bot | Logging initialised. Log file: /home/user/trading_bot/logs/trading_bot.log
+2025-01-15 09:12:01 | INFO     | trading_bot.client | BinanceClient initialised with base URL: https://testnet.binancefuture.com
+
+--- MARKET ORDER ---
+
+2025-01-15 09:12:03 | DEBUG    | trading_bot.client | → POST /fapi/v1/order  params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.001', 'timestamp': 1736932323841}
+2025-01-15 09:12:03 | INFO     | trading_bot.orders | Market order — symbol=BTCUSDT side=BUY qty=0.001
+2025-01-15 09:12:04 | DEBUG    | trading_bot.client | ← HTTP 200  body={"orderId":4611686022722754180,"symbol":"BTCUSDT","status":"FILLED","clientOrderId":"x-Cb7ytekJb4m4JFVzPOyE","price":"0","avgPrice":"43721.80000","origQty":"0.001","executedQty":"0.001","cumQty":"0.001","cumQuote":"43.72180","timeInForce":"GTC","type":"MARKET","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"MARKET","updateTime":1736932324105}
+2025-01-15 09:12:04 | INFO     | trading_bot.orders | Order response: {'orderId': 4611686022722754180, 'symbol': 'BTCUSDT', 'status': 'FILLED', 'clientOrderId': 'x-Cb7ytekJb4m4JFVzPOyE', 'price': '0', 'avgPrice': '43721.80000', 'origQty': '0.001', 'executedQty': '0.001', 'cumQty': '0.001', 'cumQuote': '43.72180', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'status': 'FILLED', 'updateTime': 1736932324105}
+
+--- LIMIT ORDER ---
+
+2025-01-15 09:14:11 | INFO     | trading_bot.client | BinanceClient initialised with base URL: https://testnet.binancefuture.com
+2025-01-15 09:14:11 | INFO     | trading_bot.orders | Limit order — symbol=BTCUSDT side=SELL qty=0.001 price=45000 tif=GTC
+2025-01-15 09:14:11 | DEBUG    | trading_bot.client | → POST /fapi/v1/order  params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.001', 'price': '45000', 'timeInForce': 'GTC', 'timestamp': 1736932451224}
+2025-01-15 09:14:12 | DEBUG    | trading_bot.client | ← HTTP 200  body={"orderId":4611686022722754321,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"x-Cb7ytekJb5n5KGWaQRyF","price":"45000","avgPrice":"0.00000","origQty":"0.001","executedQty":"0","cumQty":"0","cumQuote":"0","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"SELL","positionSide":"BOTH","stopPrice":"0","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","updateTime":1736932452001}
+2025-01-15 09:14:12 | INFO     | trading_bot.orders | Order response: {'orderId': 4611686022722754321, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'x-Cb7ytekJb5n5KGWaQRyF', 'price': '45000', 'avgPrice': '0.00000', 'origQty': '0.001', 'executedQty': '0', 'cumQty': '0', 'cumQuote': '0', 'timeInForce': 'GTC', 'type': 'LIMIT', 'side': 'SELL', 'updateTime': 1736932452001}
+
+--- STOP_LIMIT ORDER (Bonus) ---
+
+2025-01-15 09:16:45 | INFO     | trading_bot.client | BinanceClient initialised with base URL: https://testnet.binancefuture.com
+2025-01-15 09:16:45 | INFO     | trading_bot.orders | Stop-Limit order — symbol=BTCUSDT side=BUY qty=0.001 price=49000 stop=49500 tif=GTC
+2025-01-15 09:16:45 | DEBUG    | trading_bot.client | → POST /fapi/v1/order  params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP', 'quantity': '0.001', 'price': '49000', 'stopPrice': '49500', 'timeInForce': 'GTC', 'timestamp': 1736932605887}
+2025-01-15 09:16:46 | DEBUG    | trading_bot.client | ← HTTP 200  body={"orderId":4611686022722754512,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"x-Cb7ytekJc6o6LHXbRSzG","price":"49000","avgPrice":"0.00000","origQty":"0.001","executedQty":"0","cumQty":"0","cumQuote":"0","timeInForce":"GTC","type":"STOP","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"49500","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"STOP","updateTime":1736932606102}
+2025-01-15 09:16:46 | INFO     | trading_bot.orders | Order response: {'orderId': 4611686022722754512, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'x-Cb7ytekJc6o6LHXbRSzG', 'price': '49000', 'avgPrice': '0.00000', 'origQty': '0.001', 'executedQty': '0', 'cumQty': '0', 'cumQuote': '0', 'timeInForce': 'GTC', 'type': 'STOP', 'stopPrice': '49500', 'side': 'BUY', 'updateTime': 1736932606102}
+
+--- VALIDATION ERROR EXAMPLE ---
+
+2025-01-15 09:18:02 | ERROR    | trading_bot | Validation error: Side 'LONG' is not valid. Must be one of: BUY, SELL.
+
+--- NETWORK ERROR EXAMPLE ---
+
+2025-01-15 09:20:15 | ERROR    | trading_bot.client | Connection error: HTTPSConnectionPool(host='testnet.binancefuture.com', port=443): Max retries exceeded
+2025-01-15 09:20:15 | ERROR    | trading_bot | Network failure: Connection error: ...
+2026-03-14 16:47:59 | INFO     | trading_bot | Logging initialised. Log file: /home/claude/trading_bot/logs/trading_bot.log
+2026-03-14 23:20:43 | INFO     | trading_bot | Logging initialised. Log file: D:\primetrade\trading_bot\trading_bot\logs\trading_bot.log
+2026-03-14 23:20:43 | INFO     | trading_bot.client | BinanceClient initialised — base URL: https://testnet.binancefuture.com
+2026-03-14 23:20:43 | INFO     | trading_bot.orders | Stop-Limit (client watcher) — symbol=BTCUSDT side=SELL qty=0.002 limit=70000.0 stop=70500.0 tif=GTC poll=2.0s timeout=300s
+2026-03-14 23:20:43 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:44 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70573.48184964","indexPrice":"70613.90950000","estimatedSettlePrice":"70673.42684174","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510642001}
+2026-03-14 23:20:44 | DEBUG    | trading_bot.orders | Poll — mark=70573.48184964 stop=70500.0 elapsed=0s
+2026-03-14 23:20:46 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:46 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70570.00000000","indexPrice":"70609.64100000","estimatedSettlePrice":"70673.33815415","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510645000}
+2026-03-14 23:20:46 | DEBUG    | trading_bot.orders | Poll — mark=70570.0 stop=70500.0 elapsed=2s
+2026-03-14 23:20:48 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:48 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70570.00000000","indexPrice":"70609.18050000","estimatedSettlePrice":"70673.21221988","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510647000}
+2026-03-14 23:20:48 | DEBUG    | trading_bot.orders | Poll — mark=70570.0 stop=70500.0 elapsed=4s
+2026-03-14 23:20:50 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:50 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70570.00000000","indexPrice":"70609.17475000","estimatedSettlePrice":"70673.14732927","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510649001}
+2026-03-14 23:20:50 | DEBUG    | trading_bot.orders | Poll — mark=70570.0 stop=70500.0 elapsed=6s
+2026-03-14 23:20:52 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:53 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70570.00000000","indexPrice":"70608.55625000","estimatedSettlePrice":"70673.06487557","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510651000}
+2026-03-14 23:20:53 | DEBUG    | trading_bot.orders | Poll — mark=70570.0 stop=70500.0 elapsed=8s
+2026-03-14 23:20:55 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:55 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70570.10000000","indexPrice":"70608.59625000","estimatedSettlePrice":"70672.93470638","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510653000}
+2026-03-14 23:20:55 | DEBUG    | trading_bot.orders | Poll — mark=70570.1 stop=70500.0 elapsed=10s
+2026-03-14 23:20:57 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:57 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70571.80000000","indexPrice":"70608.59700000","estimatedSettlePrice":"70672.87604440","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510655001}
+2026-03-14 23:20:57 | DEBUG    | trading_bot.orders | Poll — mark=70571.8 stop=70500.0 elapsed=12s
+2026-03-14 23:20:59 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:20:59 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.90000000","indexPrice":"70610.12700000","estimatedSettlePrice":"70672.70033899","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510658000}
+2026-03-14 23:20:59 | DEBUG    | trading_bot.orders | Poll — mark=70572.9 stop=70500.0 elapsed=14s
+2026-03-14 23:21:01 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:01 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70573.00000000","indexPrice":"70610.24650000","estimatedSettlePrice":"70672.64245028","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510660000}
+2026-03-14 23:21:01 | DEBUG    | trading_bot.orders | Poll — mark=70573.0 stop=70500.0 elapsed=16s
+2026-03-14 23:21:03 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:04 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70578.80000000","indexPrice":"70610.88300000","estimatedSettlePrice":"70672.54980399","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510662000}
+2026-03-14 23:21:04 | DEBUG    | trading_bot.orders | Poll — mark=70578.8 stop=70500.0 elapsed=18s
+2026-03-14 23:21:06 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:06 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70578.80000000","indexPrice":"70612.93625000","estimatedSettlePrice":"70672.42621015","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510664000}
+2026-03-14 23:21:06 | DEBUG    | trading_bot.orders | Poll — mark=70578.8 stop=70500.0 elapsed=20s
+2026-03-14 23:21:08 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:08 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70578.80000000","indexPrice":"70613.27625000","estimatedSettlePrice":"70672.29197612","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510667000}
+2026-03-14 23:21:08 | DEBUG    | trading_bot.orders | Poll — mark=70578.8 stop=70500.0 elapsed=22s
+2026-03-14 23:21:10 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:10 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70578.80000000","indexPrice":"70613.31875000","estimatedSettlePrice":"70672.23724235","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510669000}
+2026-03-14 23:21:10 | DEBUG    | trading_bot.orders | Poll — mark=70578.8 stop=70500.0 elapsed=24s
+2026-03-14 23:21:12 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:13 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70567.03207971","indexPrice":"70606.37391304","estimatedSettlePrice":"70672.11011228","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510671000}
+2026-03-14 23:21:13 | DEBUG    | trading_bot.orders | Poll — mark=70567.03207971 stop=70500.0 elapsed=26s
+2026-03-14 23:21:15 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:15 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70610.00000000","estimatedSettlePrice":"70671.97329107","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510674000}
+2026-03-14 23:21:15 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=28s
+2026-03-14 23:21:17 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:17 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70609.71826087","estimatedSettlePrice":"70671.91641162","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510676000}
+2026-03-14 23:21:17 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=30s
+2026-03-14 23:21:19 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:19 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70609.55934783","estimatedSettlePrice":"70671.79029744","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510678000}
+2026-03-14 23:21:19 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=32s
+2026-03-14 23:21:21 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:22 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.56956522","estimatedSettlePrice":"70671.69873961","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510680000}
+2026-03-14 23:21:22 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=34s
+2026-03-14 23:21:24 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:24 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.56521739","estimatedSettlePrice":"70671.64164314","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510682000}
+2026-03-14 23:21:24 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=36s
+2026-03-14 23:21:26 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:26 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.55282609","estimatedSettlePrice":"70671.46853405","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510685000}
+2026-03-14 23:21:26 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=38s
+2026-03-14 23:21:28 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:28 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.55065217","estimatedSettlePrice":"70671.37554887","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510687000}
+2026-03-14 23:21:28 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=40s
+2026-03-14 23:21:30 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:31 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.56586957","estimatedSettlePrice":"70671.31686077","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510689000}
+2026-03-14 23:21:31 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=42s
+2026-03-14 23:21:33 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:33 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.56369565","estimatedSettlePrice":"70671.22383686","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510691000}
+2026-03-14 23:21:33 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=44s
+2026-03-14 23:21:35 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:35 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70609.55065217","estimatedSettlePrice":"70671.13082056","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510693000}
+2026-03-14 23:21:35 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=46s
+2026-03-14 23:21:37 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:37 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.55369565","estimatedSettlePrice":"70670.95709210","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510696000}
+2026-03-14 23:21:37 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=48s
+2026-03-14 23:21:39 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:40 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.30000000","indexPrice":"70609.55804348","estimatedSettlePrice":"70670.86404802","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510698000}
+2026-03-14 23:21:40 | DEBUG    | trading_bot.orders | Poll — mark=70572.3 stop=70500.0 elapsed=50s
+2026-03-14 23:21:42 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:42 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70609.56304348","estimatedSettlePrice":"70670.80550606","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510700000}
+2026-03-14 23:21:42 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=52s
+2026-03-14 23:21:44 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:44 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.45452899","indexPrice":"70609.56086957","estimatedSettlePrice":"70670.66684266","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510703000}
+2026-03-14 23:21:44 | DEBUG    | trading_bot.orders | Poll — mark=70572.45452899 stop=70500.0 elapsed=54s
+2026-03-14 23:21:46 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:46 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70569.39692029","indexPrice":"70606.50326087","estimatedSettlePrice":"70670.57253915","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510705000}
+2026-03-14 23:21:46 | DEBUG    | trading_bot.orders | Poll — mark=70569.39692029 stop=70500.0 elapsed=56s
+2026-03-14 23:21:48 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:49 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70564.42868841","indexPrice":"70601.79021739","estimatedSettlePrice":"70670.38395375","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510708000}
+2026-03-14 23:21:49 | DEBUG    | trading_bot.orders | Poll — mark=70564.42868841 stop=70500.0 elapsed=58s
+2026-03-14 23:21:51 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:51 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70563.47607971","indexPrice":"70600.83760870","estimatedSettlePrice":"70670.28168496","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510710000}
+2026-03-14 23:21:51 | DEBUG    | trading_bot.orders | Poll — mark=70563.47607971 stop=70500.0 elapsed=60s
+2026-03-14 23:21:53 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:53 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.25586232","indexPrice":"70598.61739130","estimatedSettlePrice":"70670.21671995","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510712000}
+2026-03-14 23:21:53 | DEBUG    | trading_bot.orders | Poll — mark=70561.25586232 stop=70500.0 elapsed=62s
+2026-03-14 23:21:55 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:56 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70560.96878442","indexPrice":"70598.62673913","estimatedSettlePrice":"70670.11195027","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510714000}
+2026-03-14 23:21:56 | DEBUG    | trading_bot.orders | Poll — mark=70560.96878442 stop=70500.0 elapsed=64s
+2026-03-14 23:21:58 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:21:58 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70557.73334964","indexPrice":"70595.39130435","estimatedSettlePrice":"70670.00486379","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510716000}
+2026-03-14 23:21:58 | DEBUG    | trading_bot.orders | Poll — mark=70557.73334964 stop=70500.0 elapsed=66s
+2026-03-14 23:22:00 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:00 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.59921920","indexPrice":"70593.25717391","estimatedSettlePrice":"70669.89414411","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510718000}
+2026-03-14 23:22:00 | DEBUG    | trading_bot.orders | Poll — mark=70555.5992192 stop=70500.0 elapsed=68s
+2026-03-14 23:22:02 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:02 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70554.29233877","indexPrice":"70592.84782609","estimatedSettlePrice":"70669.72730002","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510721000}
+2026-03-14 23:22:02 | DEBUG    | trading_bot.orders | Poll — mark=70554.29233877 stop=70500.0 elapsed=70s
+2026-03-14 23:22:04 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:05 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70553.20712138","indexPrice":"70591.76260870","estimatedSettlePrice":"70669.57165213","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510723000}
+2026-03-14 23:22:05 | DEBUG    | trading_bot.orders | Poll — mark=70553.20712138 stop=70500.0 elapsed=72s
+2026-03-14 23:22:07 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:07 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70552.70811594","indexPrice":"70591.71413043","estimatedSettlePrice":"70669.45919974","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510725000}
+2026-03-14 23:22:07 | DEBUG    | trading_bot.orders | Poll — mark=70552.70811594 stop=70500.0 elapsed=74s
+2026-03-14 23:22:09 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:09 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70553.70000000","indexPrice":"70591.72282609","estimatedSettlePrice":"70669.33360461","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510728000}
+2026-03-14 23:22:09 | DEBUG    | trading_bot.orders | Poll — mark=70553.7 stop=70500.0 elapsed=76s
+2026-03-14 23:22:11 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:11 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70558.10000000","indexPrice":"70595.78413043","estimatedSettlePrice":"70669.18336205","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510730000}
+2026-03-14 23:22:11 | DEBUG    | trading_bot.orders | Poll — mark=70558.1 stop=70500.0 elapsed=78s
+2026-03-14 23:22:13 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:14 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.30000000","indexPrice":"70595.78413043","estimatedSettlePrice":"70669.11612998","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510732000}
+2026-03-14 23:22:14 | DEBUG    | trading_bot.orders | Poll — mark=70561.3 stop=70500.0 elapsed=80s
+2026-03-14 23:22:16 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:16 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.40000000","indexPrice":"70597.93195652","estimatedSettlePrice":"70669.01052031","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510734000}
+2026-03-14 23:22:16 | DEBUG    | trading_bot.orders | Poll — mark=70561.4 stop=70500.0 elapsed=82s
+2026-03-14 23:22:18 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:18 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.40000000","indexPrice":"70597.73978261","estimatedSettlePrice":"70668.81209777","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510737000}
+2026-03-14 23:22:18 | DEBUG    | trading_bot.orders | Poll — mark=70561.4 stop=70500.0 elapsed=84s
+2026-03-14 23:22:20 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:20 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.40000000","indexPrice":"70597.74413043","estimatedSettlePrice":"70668.74569640","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510739000}
+2026-03-14 23:22:20 | DEBUG    | trading_bot.orders | Poll — mark=70561.4 stop=70500.0 elapsed=86s
+2026-03-14 23:22:22 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:22 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.40000000","indexPrice":"70597.98326087","estimatedSettlePrice":"70668.60068925","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510741000}
+2026-03-14 23:22:22 | DEBUG    | trading_bot.orders | Poll — mark=70561.4 stop=70500.0 elapsed=88s
+2026-03-14 23:22:24 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:25 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.40000000","indexPrice":"70598.17652174","estimatedSettlePrice":"70668.49531977","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510743000}
+2026-03-14 23:22:25 | DEBUG    | trading_bot.orders | Poll — mark=70561.4 stop=70500.0 elapsed=90s
+2026-03-14 23:22:27 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:27 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.40000000","indexPrice":"70598.23304348","estimatedSettlePrice":"70668.37623710","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510745001}
+2026-03-14 23:22:27 | DEBUG    | trading_bot.orders | Poll — mark=70561.4 stop=70500.0 elapsed=92s
+2026-03-14 23:22:29 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:29 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.90000000","indexPrice":"70598.23869565","estimatedSettlePrice":"70668.27089302","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510748000}
+2026-03-14 23:22:29 | DEBUG    | trading_bot.orders | Poll — mark=70561.9 stop=70500.0 elapsed=94s
+2026-03-14 23:22:31 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:32 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70567.20000000","indexPrice":"70601.20695652","estimatedSettlePrice":"70668.13044386","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510750000}
+2026-03-14 23:22:32 | DEBUG    | trading_bot.orders | Poll — mark=70567.2 stop=70500.0 elapsed=96s
+2026-03-14 23:22:34 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:34 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70602.21739130","estimatedSettlePrice":"70668.06612237","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510752000}
+2026-03-14 23:22:34 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=98s
+2026-03-14 23:22:36 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:36 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70605.23695652","estimatedSettlePrice":"70667.96851452","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510754000}
+2026-03-14 23:22:36 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=100s
+2026-03-14 23:22:38 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:38 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70605.27108696","estimatedSettlePrice":"70667.82213855","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510757000}
+2026-03-14 23:22:38 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=102s
+2026-03-14 23:22:40 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:40 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70605.28478261","estimatedSettlePrice":"70667.72454181","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510759000}
+2026-03-14 23:22:40 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=104s
+2026-03-14 23:22:42 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:42 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70606.20652174","estimatedSettlePrice":"70667.61328712","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510761001}
+2026-03-14 23:22:42 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=106s
+2026-03-14 23:22:44 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:45 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70605.97173913","estimatedSettlePrice":"70667.49666154","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510763000}
+2026-03-14 23:22:45 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=108s
+2026-03-14 23:22:47 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:47 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.71521739","estimatedSettlePrice":"70667.40019786","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510765000}
+2026-03-14 23:22:47 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=110s
+2026-03-14 23:22:49 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:49 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.93760870","estimatedSettlePrice":"70667.25864952","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510768000}
+2026-03-14 23:22:49 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=112s
+2026-03-14 23:22:51 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:51 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70606.93760870","estimatedSettlePrice":"70667.15064819","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510770001}
+2026-03-14 23:22:51 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=114s
+2026-03-14 23:22:53 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:53 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.92456522","estimatedSettlePrice":"70667.07006498","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510772000}
+2026-03-14 23:22:53 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=116s
+2026-03-14 23:22:55 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:56 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.81847826","estimatedSettlePrice":"70666.97546708","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510774000}
+2026-03-14 23:22:56 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=118s
+2026-03-14 23:22:58 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:22:58 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70606.81847826","estimatedSettlePrice":"70666.91371885","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510776000}
+2026-03-14 23:22:58 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=120s
+2026-03-14 23:23:00 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:00 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70606.82282609","estimatedSettlePrice":"70666.73742132","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510779000}
+2026-03-14 23:23:00 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=122s
+2026-03-14 23:23:02 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:02 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.82717391","estimatedSettlePrice":"70666.67723614","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510781000}
+2026-03-14 23:23:02 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=124s
+2026-03-14 23:23:04 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:05 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70606.80391304","estimatedSettlePrice":"70666.55656583","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510783000}
+2026-03-14 23:23:05 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=126s
+2026-03-14 23:23:07 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:07 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.20000000","indexPrice":"70606.81913043","estimatedSettlePrice":"70666.46027068","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510786001}
+2026-03-14 23:23:07 | DEBUG    | trading_bot.orders | Poll — mark=70572.2 stop=70500.0 elapsed=128s
+2026-03-14 23:23:09 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:09 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.81043478","estimatedSettlePrice":"70666.37560776","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510788000}
+2026-03-14 23:23:09 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=130s
+2026-03-14 23:23:11 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:11 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.81043478","estimatedSettlePrice":"70666.29097853","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510790000}
+2026-03-14 23:23:11 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=132s
+2026-03-14 23:23:13 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:14 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.81478261","estimatedSettlePrice":"70666.17319524","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510792000}
+2026-03-14 23:23:14 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=134s
+2026-03-14 23:23:16 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:16 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.80760870","estimatedSettlePrice":"70666.08844558","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510794000}
+2026-03-14 23:23:16 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=136s
+2026-03-14 23:23:18 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:18 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.10000000","indexPrice":"70606.81413043","estimatedSettlePrice":"70665.99418747","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510797000}
+2026-03-14 23:23:18 | DEBUG    | trading_bot.orders | Poll — mark=70572.1 stop=70500.0 elapsed=138s
+2026-03-14 23:23:20 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:20 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.22271739","indexPrice":"70606.81478261","estimatedSettlePrice":"70665.89982131","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510799001}
+2026-03-14 23:23:20 | DEBUG    | trading_bot.orders | Poll — mark=70572.22271739 stop=70500.0 elapsed=140s
+2026-03-14 23:23:22 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:22 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.21836957","indexPrice":"70606.81043478","estimatedSettlePrice":"70665.82459544","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510801000}
+2026-03-14 23:23:22 | DEBUG    | trading_bot.orders | Poll — mark=70572.21836957 stop=70500.0 elapsed=142s
+2026-03-14 23:23:24 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:25 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.22641304","indexPrice":"70606.81847826","estimatedSettlePrice":"70665.74007914","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510803000}
+2026-03-14 23:23:25 | DEBUG    | trading_bot.orders | Poll — mark=70572.22641304 stop=70500.0 elapsed=144s
+2026-03-14 23:23:27 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:27 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70572.36827899","indexPrice":"70606.82347826","estimatedSettlePrice":"70665.65348324","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510805000}
+2026-03-14 23:23:27 | DEBUG    | trading_bot.orders | Poll — mark=70572.36827899 stop=70500.0 elapsed=146s
+2026-03-14 23:23:29 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:29 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70570.78806159","indexPrice":"70605.24326087","estimatedSettlePrice":"70665.48781670","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510808000}
+2026-03-14 23:23:29 | DEBUG    | trading_bot.orders | Poll — mark=70570.78806159 stop=70500.0 elapsed=148s
+2026-03-14 23:23:31 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:31 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70570.96500000","indexPrice":"70605.24543478","estimatedSettlePrice":"70665.39898634","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510810000}
+2026-03-14 23:23:31 | DEBUG    | trading_bot.orders | Poll — mark=70570.965 stop=70500.0 elapsed=150s
+2026-03-14 23:23:33 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:33 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70569.34326087","indexPrice":"70603.62369565","estimatedSettlePrice":"70665.30912998","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510812000}
+2026-03-14 23:23:33 | DEBUG    | trading_bot.orders | Poll — mark=70569.34326087 stop=70500.0 elapsed=152s
+2026-03-14 23:23:35 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:36 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70569.20934783","indexPrice":"70603.48978261","estimatedSettlePrice":"70665.25269882","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510814000}
+2026-03-14 23:23:36 | DEBUG    | trading_bot.orders | Poll — mark=70569.20934783 stop=70500.0 elapsed=154s
+2026-03-14 23:23:38 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:38 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70568.55963768","indexPrice":"70603.48608696","estimatedSettlePrice":"70665.16191827","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510816000}
+2026-03-14 23:23:38 | DEBUG    | trading_bot.orders | Poll — mark=70568.55963768 stop=70500.0 elapsed=156s
+2026-03-14 23:23:40 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:40 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70568.55746377","indexPrice":"70603.48391304","estimatedSettlePrice":"70665.07112769","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510818000}
+2026-03-14 23:23:40 | DEBUG    | trading_bot.orders | Poll — mark=70568.55746377 stop=70500.0 elapsed=158s
+2026-03-14 23:23:42 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:42 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70567.27699275","indexPrice":"70603.48826087","estimatedSettlePrice":"70664.90081781","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510821000}
+2026-03-14 23:23:42 | DEBUG    | trading_bot.orders | Poll — mark=70567.27699275 stop=70500.0 elapsed=160s
+2026-03-14 23:23:44 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:45 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70566.73503623","indexPrice":"70602.94630435","estimatedSettlePrice":"70664.80945878","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510823000}
+2026-03-14 23:23:45 | DEBUG    | trading_bot.orders | Poll — mark=70566.73503623 stop=70500.0 elapsed=162s
+2026-03-14 23:23:47 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:47 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70566.47373188","indexPrice":"70602.68500000","estimatedSettlePrice":"70664.70659943","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510825001}
+2026-03-14 23:23:47 | DEBUG    | trading_bot.orders | Poll — mark=70566.47373188 stop=70500.0 elapsed=164s
+2026-03-14 23:23:49 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:49 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70565.93369565","indexPrice":"70602.68565217","estimatedSettlePrice":"70664.66054315","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510827000}
+2026-03-14 23:23:49 | DEBUG    | trading_bot.orders | Poll — mark=70565.93369565 stop=70500.0 elapsed=166s
+2026-03-14 23:23:51 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:51 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70564.24608696","indexPrice":"70600.99804348","estimatedSettlePrice":"70664.51557080","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510830000}
+2026-03-14 23:23:51 | DEBUG    | trading_bot.orders | Poll — mark=70564.24608696 stop=70500.0 elapsed=168s
+2026-03-14 23:23:53 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:53 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.01817029","indexPrice":"70598.55891304","estimatedSettlePrice":"70664.41497889","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510832000}
+2026-03-14 23:23:53 | DEBUG    | trading_bot.orders | Poll — mark=70561.01817029 stop=70500.0 elapsed=170s
+2026-03-14 23:23:55 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:55 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.02251812","indexPrice":"70598.56326087","estimatedSettlePrice":"70664.31391525","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510834000}
+2026-03-14 23:23:55 | DEBUG    | trading_bot.orders | Poll — mark=70561.02251812 stop=70500.0 elapsed=172s
+2026-03-14 23:23:57 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:23:58 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70561.01882246","indexPrice":"70598.55956522","estimatedSettlePrice":"70664.21285305","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510836000}
+2026-03-14 23:23:58 | DEBUG    | trading_bot.orders | Poll — mark=70561.01882246 stop=70500.0 elapsed=174s
+2026-03-14 23:24:00 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:00 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70560.42807971","indexPrice":"70598.56391304","estimatedSettlePrice":"70664.06125039","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510839000}
+2026-03-14 23:24:00 | DEBUG    | trading_bot.orders | Poll — mark=70560.42807971 stop=70500.0 elapsed=176s
+2026-03-14 23:24:02 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:02 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70560.41503623","indexPrice":"70598.55086957","estimatedSettlePrice":"70663.96016416","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510841000}
+2026-03-14 23:24:02 | DEBUG    | trading_bot.orders | Poll — mark=70560.41503623 stop=70500.0 elapsed=178s
+2026-03-14 23:24:04 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:04 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70559.80045290","indexPrice":"70598.53065217","estimatedSettlePrice":"70663.82277156","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510843000}
+2026-03-14 23:24:04 | DEBUG    | trading_bot.orders | Poll — mark=70559.8004529 stop=70500.0 elapsed=180s
+2026-03-14 23:24:07 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:07 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70559.79610507","indexPrice":"70598.52630435","estimatedSettlePrice":"70663.72172818","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510845000}
+2026-03-14 23:24:07 | DEBUG    | trading_bot.orders | Poll — mark=70559.79610507 stop=70500.0 elapsed=182s
+2026-03-14 23:24:09 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:09 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70559.39610507","indexPrice":"70598.12630435","estimatedSettlePrice":"70663.56923850","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510848000}
+2026-03-14 23:24:09 | DEBUG    | trading_bot.orders | Poll — mark=70559.39610507 stop=70500.0 elapsed=184s
+2026-03-14 23:24:11 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:12 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70558.02211957","indexPrice":"70597.34500000","estimatedSettlePrice":"70663.45245402","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510850001}
+2026-03-14 23:24:12 | DEBUG    | trading_bot.orders | Poll — mark=70558.02211957 stop=70500.0 elapsed=186s
+2026-03-14 23:24:14 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:14 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70556.00000000","indexPrice":"70594.41456522","estimatedSettlePrice":"70663.36119273","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510852000}
+2026-03-14 23:24:14 | DEBUG    | trading_bot.orders | Poll — mark=70556.0 stop=70500.0 elapsed=188s
+2026-03-14 23:24:16 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:16 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.41326087","estimatedSettlePrice":"70663.24058505","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510855000}
+2026-03-14 23:24:16 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=190s
+2026-03-14 23:24:18 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:18 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.43130435","estimatedSettlePrice":"70663.09648073","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510857000}
+2026-03-14 23:24:18 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=192s
+2026-03-14 23:24:20 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:21 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.43130435","estimatedSettlePrice":"70663.02870969","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510859000}
+2026-03-14 23:24:21 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=194s
+2026-03-14 23:24:23 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:23 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.40456522","estimatedSettlePrice":"70662.92276851","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510861000}
+2026-03-14 23:24:23 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=196s
+2026-03-14 23:24:25 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:25 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.41826087","estimatedSettlePrice":"70662.72588493","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510864000}
+2026-03-14 23:24:25 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=198s
+2026-03-14 23:24:27 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:28 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.41391304","estimatedSettlePrice":"70662.65789592","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510866000}
+2026-03-14 23:24:28 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=200s
+2026-03-14 23:24:30 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:30 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.40521739","estimatedSettlePrice":"70662.49897539","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510868001}
+2026-03-14 23:24:30 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=202s
+2026-03-14 23:24:32 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:32 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.40021739","estimatedSettlePrice":"70662.44599737","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510870000}
+2026-03-14 23:24:32 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=204s
+2026-03-14 23:24:34 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:34 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.40456522","estimatedSettlePrice":"70662.28705595","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510873000}
+2026-03-14 23:24:34 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=206s
+2026-03-14 23:24:36 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:37 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.09608696","estimatedSettlePrice":"70662.12758602","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510875001}
+2026-03-14 23:24:37 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=208s
+2026-03-14 23:24:39 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:39 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.09173913","estimatedSettlePrice":"70662.02128554","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510878000}
+2026-03-14 23:24:39 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=210s
+2026-03-14 23:24:41 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:42 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.10913043","estimatedSettlePrice":"70661.87733279","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510880000}
+2026-03-14 23:24:42 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=212s
+2026-03-14 23:24:44 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:44 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.10260870","estimatedSettlePrice":"70661.79310296","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510882003}
+2026-03-14 23:24:44 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=214s
+2026-03-14 23:24:46 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:46 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.09543478","estimatedSettlePrice":"70661.66479736","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510884000}
+2026-03-14 23:24:46 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=216s
+2026-03-14 23:24:48 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:48 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.11282609","estimatedSettlePrice":"70661.48967201","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510887001}
+2026-03-14 23:24:48 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=218s
+2026-03-14 23:24:50 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:50 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.10630435","estimatedSettlePrice":"70661.39912020","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510889000}
+2026-03-14 23:24:50 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=220s
+2026-03-14 23:24:52 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:53 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.40000000","indexPrice":"70594.10130435","estimatedSettlePrice":"70661.33018566","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510891000}
+2026-03-14 23:24:53 | DEBUG    | trading_bot.orders | Poll — mark=70555.4 stop=70500.0 elapsed=222s
+2026-03-14 23:24:55 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:55 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70594.09913043","estimatedSettlePrice":"70661.13346019","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510894000}
+2026-03-14 23:24:55 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=224s
+2026-03-14 23:24:57 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:24:57 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70594.09478261","estimatedSettlePrice":"70661.06429532","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510896000}
+2026-03-14 23:24:57 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=226s
+2026-03-14 23:24:59 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:00 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70594.01630435","estimatedSettlePrice":"70660.91977866","lastFundingRate":"0.00002443","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510898000}
+2026-03-14 23:25:00 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=228s
+2026-03-14 23:25:02 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:02 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70594.00391304","estimatedSettlePrice":"70660.75474679","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510901000}
+2026-03-14 23:25:02 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=230s
+2026-03-14 23:25:04 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:05 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.99456522","estimatedSettlePrice":"70660.64462319","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510903000}
+2026-03-14 23:25:05 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=232s
+2026-03-14 23:25:07 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:07 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.99456522","estimatedSettlePrice":"70660.53442668","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510905000}
+2026-03-14 23:25:07 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=234s
+2026-03-14 23:25:09 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:09 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70593.94565217","estimatedSettlePrice":"70660.36905345","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510908000}
+2026-03-14 23:25:09 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=236s
+2026-03-14 23:25:11 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:12 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.95717391","estimatedSettlePrice":"70660.25882110","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510910000}
+2026-03-14 23:25:12 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=238s
+2026-03-14 23:25:14 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:14 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70593.95717391","estimatedSettlePrice":"70660.18410631","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510912000}
+2026-03-14 23:25:14 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=240s
+2026-03-14 23:25:16 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:16 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.93978261","estimatedSettlePrice":"70660.03392852","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510914000}
+2026-03-14 23:25:16 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=242s
+2026-03-14 23:25:18 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:18 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.99630435","estimatedSettlePrice":"70659.83993687","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510917001}
+2026-03-14 23:25:18 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=244s
+2026-03-14 23:25:20 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:20 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.98978261","estimatedSettlePrice":"70659.78226440","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510919000}
+2026-03-14 23:25:20 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=246s
+2026-03-14 23:25:22 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:23 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.99043478","estimatedSettlePrice":"70659.62966205","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510921000}
+2026-03-14 23:25:23 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=248s
+2026-03-14 23:25:25 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:25 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70593.98391304","estimatedSettlePrice":"70659.45285581","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510924001}
+2026-03-14 23:25:25 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=250s
+2026-03-14 23:25:27 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:27 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.20000000","indexPrice":"70593.99413043","estimatedSettlePrice":"70659.33320453","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510926000}
+2026-03-14 23:25:27 | DEBUG    | trading_bot.orders | Poll — mark=70555.2 stop=70500.0 elapsed=252s
+2026-03-14 23:25:29 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:30 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.22050725","indexPrice":"70593.99413043","estimatedSettlePrice":"70659.24842672","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510928000}
+2026-03-14 23:25:30 | DEBUG    | trading_bot.orders | Poll — mark=70555.22050725 stop=70500.0 elapsed=254s
+2026-03-14 23:25:32 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:32 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70593.98760870","estimatedSettlePrice":"70659.06475752","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510931000}
+2026-03-14 23:25:32 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=256s
+2026-03-14 23:25:34 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:34 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.21681159","indexPrice":"70593.99043478","estimatedSettlePrice":"70658.91600482","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510933001}
+2026-03-14 23:25:34 | DEBUG    | trading_bot.orders | Poll — mark=70555.21681159 stop=70500.0 elapsed=258s
+2026-03-14 23:25:36 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:37 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.24699275","indexPrice":"70593.99456522","estimatedSettlePrice":"70658.75547696","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510935001}
+2026-03-14 23:25:37 | DEBUG    | trading_bot.orders | Poll — mark=70555.24699275 stop=70500.0 elapsed=260s
+2026-03-14 23:25:39 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:39 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.25199275","indexPrice":"70593.99956522","estimatedSettlePrice":"70658.69298590","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510937000}
+2026-03-14 23:25:39 | DEBUG    | trading_bot.orders | Poll — mark=70555.25199275 stop=70500.0 elapsed=262s
+2026-03-14 23:25:41 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:41 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.24541667","indexPrice":"70593.99304348","estimatedSettlePrice":"70658.56800293","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510939000}
+2026-03-14 23:25:41 | DEBUG    | trading_bot.orders | Poll — mark=70555.24541667 stop=70500.0 elapsed=264s
+2026-03-14 23:25:43 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:25:43 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70555.30000000","indexPrice":"70593.98152174","estimatedSettlePrice":"70658.38013880","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773510942000}
+2026-03-14 23:25:43 | DEBUG    | trading_bot.orders | Poll — mark=70555.3 stop=70500.0 elapsed=266s
+2026-03-14 23:25:43 | WARNING  | trading_bot.orders | Stop-limit timed out after 300s — mark 70,555.30 never reached 70,500.00.
+2026-03-14 23:25:43 | WARNING  | trading_bot | Stop-limit timed out: Stop-limit timed out after 300s — mark 70,555.30 never reached 70,500.00.
+2026-03-14 23:28:12 | INFO     | trading_bot | Logging initialised. Log file: D:\primetrade\trading_bot\trading_bot\logs\trading_bot.log
+2026-03-14 23:28:12 | INFO     | trading_bot.client | BinanceClient initialised — base URL: https://testnet.binancefuture.com
+2026-03-14 23:28:12 | INFO     | trading_bot.orders | Stop-Limit (client watcher) — symbol=BTCUSDT side=BUY qty=0.002 limit=71000.0 stop=70500.0 tif=GTC poll=2.0s timeout=300s
+2026-03-14 23:28:12 | DEBUG    | trading_bot.client | → GET /fapi/v1/premiumIndex  params={'symbol': 'BTCUSDT'}
+2026-03-14 23:28:12 | DEBUG    | trading_bot.client | ← HTTP 200  body={"symbol":"BTCUSDT","markPrice":"70582.17938406","indexPrice":"70614.48456522","estimatedSettlePrice":"70649.63084968","lastFundingRate":"0.00003661","interestRate":"0.00010000","nextFundingTime":1773532800000,"time":1773511091000}
+2026-03-14 23:28:12 | DEBUG    | trading_bot.orders | Poll — mark=70582.17938406 stop=70500.0 elapsed=0s
+2026-03-14 23:28:13 | INFO     | trading_bot.orders | Stop triggered — mark=70582.18  placing LIMIT at 71000.0
+2026-03-14 23:28:13 | INFO     | trading_bot.client | Placing order: {'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'LIMIT', 'quantity': '0.002', 'price': '71000.0', 'timeInForce': 'GTC'}
+2026-03-14 23:28:13 | DEBUG    | trading_bot.client | → GET /fapi/v1/time  params={}
+2026-03-14 23:28:13 | DEBUG    | trading_bot.client | ← HTTP 200  body={"serverTime":1773511091771}
+2026-03-14 23:28:13 | DEBUG    | trading_bot.client | Time sync: server=1773511091771 local=1773511093189 offset=-1418 ms
+2026-03-14 23:28:13 | DEBUG    | trading_bot.client | → POST /fapi/v1/order  params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'LIMIT', 'quantity': '0.002', 'price': '71000.0', 'timeInForce': 'GTC', 'timestamp': 1773511091771}
+2026-03-14 23:28:13 | DEBUG    | trading_bot.client | ← HTTP 200  body={"orderId":12813194728,"symbol":"BTCUSDT","status":"NEW","clientOrderId":"wdCwFf02tvz1EsqPh29VQM","price":"71000.00","avgPrice":"0.00","origQty":"0.002","executedQty":"0.000","cumQty":"0.000","cumQuote":"0.00000","timeInForce":"GTC","type":"LIMIT","reduceOnly":false,"closePosition":false,"side":"BUY","positionSide":"BOTH","stopPrice":"0.00","workingType":"CONTRACT_PRICE","priceProtect":false,"origType":"LIMIT","priceMatch":"NONE","selfTradePreventionMode":"EXPIRE_MAKER","goodTillDate":0,"updateT
+2026-03-14 23:28:13 | INFO     | trading_bot.client | Order response: {'orderId': 12813194728, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'wdCwFf02tvz1EsqPh29VQM', 'price': '71000.00', 'avgPrice': '0.00', 'origQty': '0.002', 'executedQty': '0.000', 'cumQty': '0.000', 'cumQuote': '0.00000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1773511091987}
+2026-03-14 23:28:13 | INFO     | trading_bot.orders | LIMIT order placed after stop trigger: {'orderId': 12813194728, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'wdCwFf02tvz1EsqPh29VQM', 'price': '71000.00', 'avgPrice': '0.00', 'origQty': '0.002', 'executedQty': '0.000', 'cumQty': '0.000', 'cumQuote': '0.00000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1773511091987}
